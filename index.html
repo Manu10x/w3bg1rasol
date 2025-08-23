@@ -181,8 +181,8 @@
       font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Botón de música */
-    #playBtn {
+    /* Botones de música */
+    #playBtn, #pauseBtn {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -198,8 +198,12 @@
       transition: background 0.3s;
     }
 
-    #playBtn:hover {
+    #playBtn:hover, #pauseBtn:hover {
       background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    #pauseBtn {
+      display: none;
     }
   </style>
 </head>
@@ -234,8 +238,9 @@
     </div>
   </div>
 
-  <!-- Botón para activar música -->
+  <!-- Botones de música -->
   <button id="playBtn">🎵 Reproducir música</button>
+  <button id="pauseBtn">⏸️ Pausar música</button>
   <audio id="audio" src="musica.mp3" loop></audio>
 
   <!-- Bootstrap + JS -->
@@ -271,15 +276,24 @@
       modal.show();
     }
 
-    // Botón para reproducir música
+    // Botón reproducir / pausar música
     const audio = document.getElementById('audio');
-    const btn = document.getElementById('playBtn');
-    btn.addEventListener('click', () => {
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+
+    playBtn.addEventListener('click', () => {
       audio.play().then(() => {
-        btn.style.display = 'none';
-      }).catch((error) => {
-        alert("Tu navegador bloqueó la reproducción automática. Toca de nuevo.");
+        playBtn.style.display = 'none';
+        pauseBtn.style.display = 'inline-block';
+      }).catch(() => {
+        alert("Tu navegador bloqueó la reproducción automática. Intenta tocar de nuevo.");
       });
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      audio.pause();
+      pauseBtn.style.display = 'none';
+      playBtn.style.display = 'inline-block';
     });
   </script>
 </body>
