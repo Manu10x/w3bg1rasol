@@ -10,17 +10,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background-image: url('campocielo.jpg'); /* Reemplaza con tu imagen */
+      background-image: url('campocielo.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -144,14 +141,9 @@
       z-index: 0;
     }
 
-
     @keyframes flotar {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     @media (max-width: 600px) {
@@ -188,6 +180,27 @@
     .modal-content, .modal-title, .modal-body {
       font-family: 'Poppins', sans-serif !important;
     }
+
+    /* Botón de música */
+    #playBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: #333;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    #playBtn:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
   </style>
 </head>
 <body>
@@ -221,7 +234,11 @@
     </div>
   </div>
 
-  <!-- Bootstrap + Girasol JS -->
+  <!-- Botón para activar música -->
+  <button id="playBtn">🎵 Reproducir música</button>
+  <audio id="audio" src="musica.mp3" loop></audio>
+
+  <!-- Bootstrap + JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const mensajes = [
@@ -253,22 +270,17 @@
       const modal = new bootstrap.Modal(document.getElementById("modalAmor"));
       modal.show();
     }
-  </script>
 
-  <!-- Música de fondo -->
-  <audio id="audio" src="musica.mp3" loop autoplay muted></audio>
-
-<script>
-  window.addEventListener('load', () => {
+    // Botón para reproducir música
     const audio = document.getElementById('audio');
-    audio.muted = false;  // Intentamos quitar mute para que se escuche
-    audio.play().catch(() => {
-      // Si el autoplay con sonido está bloqueado, queda muteado
-      console.log('Autoplay con sonido bloqueado por navegador.');
+    const btn = document.getElementById('playBtn');
+    btn.addEventListener('click', () => {
+      audio.play().then(() => {
+        btn.style.display = 'none';
+      }).catch((error) => {
+        alert("Tu navegador bloqueó la reproducción automática. Toca de nuevo.");
+      });
     });
-  });
-</script>
-
-
+  </script>
 </body>
 </html>
