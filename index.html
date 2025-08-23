@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Girasol</title>
+  <title>Feliz Cumpleaños Hillary Esther</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
       width: 100%;
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background-image: url('campocielo.jpg');
+      background-image: url('campocielo.jpg'); /* Reemplaza con tu imagen */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -37,6 +37,7 @@
       padding: 12px 16px;
       border-radius: 10px;
       text-align: left;
+      max-width: 90%;
     }
 
     .feliz-cumple h1 {
@@ -51,12 +52,18 @@
     }
 
     @media (max-width: 600px) {
+      .feliz-cumple {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
       .feliz-cumple h1 {
-        font-size: 6vw;
+        font-size: 8vw;
       }
 
       .feliz-cumple p {
-        font-size: 3.5vw;
+        font-size: 4vw;
       }
     }
 
@@ -110,6 +117,34 @@
       box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
     }
 
+    .tallo {
+      position: absolute;
+      top: 96%;
+      left: 11%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 140px;
+      background: linear-gradient(to bottom, #3b7d2a, #1e4d17);
+      border-radius: 10px 10px 20px 20px;
+      z-index: 0;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .hoja {
+      position: absolute;
+      top: 35%;
+      left: 80%;
+      width: 80px;
+      height: 50px;
+      background: radial-gradient(ellipse at center, #4caf50 0%, #2e7d32 70%);
+      border-radius: 50% 100% 100% 50% / 60% 100% 100% 60%;
+      transform: rotate(30deg);
+      box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2),
+                  2px 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 0;
+    }
+
+
     @keyframes flotar {
       0%, 100% {
         transform: translateY(0);
@@ -120,13 +155,6 @@
     }
 
     @media (max-width: 600px) {
-      .girasol-container {
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        overflow: hidden;
-      }
-
       .girasol {
         width: 50vw;
         height: 50vw;
@@ -145,18 +173,26 @@
         width: calc(58vw * 0.46);
         height: calc(56vw * 0.46);
       }
+
+      .tallo {
+        height: 22vw;
+        width: 3vw;
+      }
+
+      .hoja {
+        width: 14vw;
+        height: 9vw;
+      }
     }
 
-    /* Fuente en el modal */
     .modal-content, .modal-title, .modal-body {
       font-family: 'Poppins', sans-serif !important;
     }
-
   </style>
 </head>
 <body>
 
-  <!-- Texto de cumpleaños -->
+  <!-- Mensaje de cumpleaños -->
   <div class="feliz-cumple">
     <h1>Feliz cumpleaños Hillary Esther</h1>
     <p>Toca cada pétalo del girasol</p>
@@ -166,6 +202,9 @@
   <div class="girasol-container">
     <div class="girasol" id="girasol">
       <div class="centro"></div>
+      <div class="tallo">
+        <div class="hoja"></div>
+      </div>
     </div>
   </div>
 
@@ -174,7 +213,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">🌻 Mensaje de Amor</h5>
+          <h5 class="modal-title" id="modalLabel">🌻 Mensaje Para ti </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body" id="mensajeModal"></div>
@@ -182,18 +221,18 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Bootstrap + Girasol JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const mensajes = [
-      "Tu amor ilumina mi vida como el sol a un girasol.",
-      "Cada pétalo es una razón por la que te amo.",
-      "Eres mi sol en los días nublados.",
-      "Tu luz hace florecer mi corazón.",
-      "Siempre giraré hacia ti, mi sol.",
-      "Mi amor por ti gira como este girasol.",
-      "Eres la primavera de mi vida.",
-      "Te amo más con cada rayo de sol."
+      "Eres una persona increíble, llena de luz y alegría, y de verdad mereces que este día sea tan maravilloso como tú.",
+      "Tu sonrisa tiene el poder de alegrar hasta el día más gris.",
+      "Eres un ejemplo de belleza, talento y autenticidad. Que este nuevo capítulo sea tan especial y único como tú lo eres para mí.",
+      "Tu sonrisa es el mejor regalo que cualquiera podría recibir, nunca dejes de brillar.",
+      "Eres única y especial, y mereces un cumpleaños tan maravilloso como tú.",
+      "No hay nadie como tú, única y especial en cada detalle.",
+      "Cada año te vuelves aún más extraordinaria, que este cumpleaños sea solo el inicio de cosas grandiosas.",
+      "Gracias por ser una persona tan auténtica y especial, ¡feliz cumpleaños y que todos tus sueños se hagan realidad!"
     ];
 
     const girasol = document.getElementById("girasol");
@@ -216,6 +255,20 @@
     }
   </script>
 
+  <!-- Música de fondo -->
+  <audio id="audio" src="musica.mp3" loop autoplay muted></audio>
+
+<script>
+  window.addEventListener('load', () => {
+    const audio = document.getElementById('audio');
+    audio.muted = false;  // Intentamos quitar mute para que se escuche
+    audio.play().catch(() => {
+      // Si el autoplay con sonido está bloqueado, queda muteado
+      console.log('Autoplay con sonido bloqueado por navegador.');
+    });
+  });
+</script>
+
+
 </body>
 </html>
-
